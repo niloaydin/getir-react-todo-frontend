@@ -1,0 +1,27 @@
+.todo_form_container {
+  padding-top: 20px;
+}
+
+.input {
+  height: 42px;
+  width: 45%;
+}
+.button {
+  height: 42px;
+  width: 9%;
+}
+
+@media (max-width: 772px) {
+  .button {
+    width: 20%;
+  }
+  .input {
+    width: 55%;
+    /* margin-right: 140px; */
+  }
+}
+@media (max-width: 480px) {
+  .todo_form_container {
+    padding-top: 50px;
+  }
+}

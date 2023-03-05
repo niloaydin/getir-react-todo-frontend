@@ -1,0 +1,19 @@
+body {
+  margin: 0;
+  width: 100vw;
+}
+.App {
+  text-align: center;
+  min-height: 100vh;
+  /* min-width: 100%; */
+  padding: 0;
+  margin: 0;
+  background: radial-gradient(
+    rgba(238, 174, 202, 1) 0%,
+    rgba(148, 187, 233, 1) 100%
+  );
+}
+
+.edited {
+  filter: blur(5px);
+}

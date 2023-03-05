@@ -1,0 +1,52 @@
+.todo_item_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.todo_card {
+  margin-bottom: 20px;
+  width: 90%;
+}
+.completed {
+  background-color: #2ecc71;
+  border-color: #3bc878;
+}
+.completed span {
+  color: white;
+}
+
+.todo_item {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+.todo_item_and_input {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.todo_item span {
+  font-size: 1.2em;
+}
+
+.todo_icons {
+  display: flex;
+  gap: 10px;
+}
+
+.edit_form {
+  text-align: center;
+  margin-top: 5%;
+  margin-bottom: 8%;
+}
+.deneme {
+  text-align: center;
+}
+
+@media (max-width: 576px) {
+  .deneme {
+    max-width: 80%;
+    margin: auto;
+  }
+}

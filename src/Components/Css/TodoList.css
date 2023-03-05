@@ -1,0 +1,28 @@
+.todo_list_container {
+  padding-top: 50px;
+}
+.active_todo_board {
+  /* background: linear-gradient(
+    90deg,
+    rgba(236, 191, 240, 0.8169861694677871) 22%,
+    rgba(217, 169, 231, 1) 82%
+  ); */
+  background-color: #8e44ad;
+  border: 2px solid rgb(161, 65, 191);
+  border-radius: 8px;
+
+  min-height: 70vh;
+}
+.active_todo_board h1 {
+  color: white;
+}
+
+@media (max-width: 576px) {
+  .active_todo_board {
+    min-height: 50vh;
+  }
+  .todo_list_container {
+    width: 85%;
+    margin: auto;
+  }
+}
