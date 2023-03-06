@@ -1,5 +1,17 @@
-import { Card, Popconfirm, Button, Input, Modal, notification } from "antd";
-import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
+import {
+  Card,
+  Popconfirm,
+  Button,
+  Input,
+  Modal,
+  notification,
+  Spin,
+} from "antd";
+import {
+  DeleteOutlined,
+  EditOutlined,
+  LoadingOutlined,
+} from "@ant-design/icons";
 import "./Css/TodoItem.css";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -15,10 +27,12 @@ const TodoItem = ({ todo }) => {
   const [value, setValue] = useState(todo.text);
 
   const dispatch = useDispatch();
+  const antIcon = <LoadingOutlined style={{ fontSize: 64 }} spin />;
 
   //Getting states from redux
   const isEditing = useSelector((state) => state.todos.isEditing);
   const editingId = useSelector((state) => state.todos.editingId);
+  const loadingEditing = useSelector((state) => state.todos.loadingEditing);
 
   //Using deleteTodo function I wrote in redux, I give the id of the todo I want to delete
   const handleDelete = () => {
@@ -65,40 +79,43 @@ const TodoItem = ({ todo }) => {
   };
 
   // if todo id equals to editingId and if isEditing is true, show the modal
-  return isEditing & (editingId === todo._id) ? (
+  return isEditing && editingId === todo._id ? (
     <div key={todo?.id} className="edit_modal">
-      <Modal
-        title="Update the Todo!"
-        open={isEditing}
-        footer={[]}
-        onCancel={handleIsEditing}
-        className="deneme"
-      >
-        <Input.Group compact className="edit_form">
-          <Input
-            style={{ width: "60%" }}
-            value={value}
-            defaultValue={value}
-            onChange={(event) => setValue(event.target.value)}
-            onKeyPress={(e) => {
-              if (e.key === "Enter") {
-                handleEdit(e);
-              }
-            }}
-            className="edit_form input"
-          />
+      {!loadingEditing && (
+        <Modal
+          title="Update the Todo!"
+          open={isEditing}
+          footer={[]}
+          onCancel={handleIsEditing}
+          className="deneme"
+        >
+          <Input.Group compact className="edit_form">
+            <Input
+              style={{ width: "60%" }}
+              value={value}
+              defaultValue={value}
+              onChange={(event) => setValue(event.target.value)}
+              onKeyPress={(e) => {
+                if (e.key === "Enter") {
+                  handleEdit(e);
+                }
+              }}
+              className="edit_form input"
+            />
 
-          <Button
-            type="primary"
-            disabled={!value}
-            style={{ width: "20%" }}
-            onClick={handleEdit}
-            className="edit_form button"
-          >
-            Edit
-          </Button>
-        </Input.Group>
-      </Modal>
+            <Button
+              type="primary"
+              disabled={!value}
+              style={{ width: "20%" }}
+              onClick={handleEdit}
+              className="edit_form button"
+            >
+              Edit
+            </Button>
+          </Input.Group>
+        </Modal>
+      )}
+      <div>{loadingEditing && <Spin indicator={antIcon} />}</div>
     </div>
   ) : (
     <div className="todo_item_container">

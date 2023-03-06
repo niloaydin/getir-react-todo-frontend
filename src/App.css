@@ -13,7 +13,12 @@ body {
     rgba(148, 187, 233, 1) 100%
   );
 }
+.spin {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 
 .edited {
-  filter: blur(5px);
+  filter: blur(2px);
 }

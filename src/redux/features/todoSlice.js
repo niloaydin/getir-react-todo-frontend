@@ -40,10 +40,13 @@ export const editTodo = createAsyncThunk("editTodo", async (payload) => {
 //Created the initial states
 const initialState = {
   todos: [],
-  loading: false,
+  loadingEditing: false,
   isEditing: false,
   error: "",
   editingId: null,
+  isDeleting: false,
+  isLoadingTodo: false,
+  isAddingTodo: false,
 };
 
 export const todoSlice = createSlice({
@@ -58,14 +61,28 @@ export const todoSlice = createSlice({
   },
 
   extraReducers: {
+    [getTodos.pending]: (state, action) => {
+      state.todos = action.payload;
+      state.isLoadingTodo = true;
+    },
     //Handled the async data in here, and used these functions in components
     [getTodos.fulfilled]: (state, action) => {
       state.todos = action.payload;
+      state.isLoadingTodo = false;
     },
 
+    [addTodo.pending]: (state, action) => {
+      state.isAddingTodo = true;
+    },
     //I get the action payload from api calls and send the new todo to todos array
     [addTodo.fulfilled]: (state, action) => {
       state.todos.push(action.payload);
+      state.isAddingTodo = false;
+    },
+
+    [deleteTodo.pending]: (state, action) => {
+      //Find the todo from the todos state whose id does match the deleted todo's id
+      state.isDeleting = true;
     },
 
     [deleteTodo.fulfilled]: (state, action) => {
@@ -73,6 +90,7 @@ export const todoSlice = createSlice({
       state.todos = state.todos.filter(
         (todo) => todo._id !== action.payload._id
       );
+      state.isDeleting = false;
     },
 
     [toggleTodo.fulfilled]: (state, action) => {
@@ -82,11 +100,10 @@ export const todoSlice = createSlice({
       );
       //After I find the todo, I change its completed property with data coming from async functions payload
       findTheTodoToToggle.completed = action.payload.completed;
-      state.loading = false;
     },
 
     [editTodo.pending]: (state) => {
-      state.isEditing = true;
+      state.loadingEditing = true;
     },
 
     [editTodo.fulfilled]: (state, action) => {
@@ -96,6 +113,7 @@ export const todoSlice = createSlice({
       );
       //After I find the todo, I change its text with data coming from async functions payload
       findTheTodoToEdit.text = action.payload.text;
+      state.loadingEditing = false;
       state.isEditing = false;
     },
   },
