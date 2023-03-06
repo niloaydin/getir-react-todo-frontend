@@ -3,7 +3,6 @@ import axios from "axios";
 
 //Created a component holding base url, so it will easier to make changes
 const BASE_URL = process.env.REACT_APP_BASE_URL;
-console.log("base url", BASE_URL);
 
 //Configure the api callbacks from which I will get data,
 //and send the information to components to use
@@ -31,7 +30,6 @@ export const toggleTodo = createAsyncThunk("toggleTodo", async (payload) => {
   return response.data;
 });
 export const editTodo = createAsyncThunk("editTodo", async (payload) => {
-  console.log("main function payload", payload);
   const response = await axios.patch(BASE_URL + `${payload._id}`, payload);
 
   return response.data;

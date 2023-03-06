@@ -13,7 +13,6 @@ const TodoList = () => {
   const isAddingTodo = useSelector((state) => state.todos.isAddingTodo);
 
   const antIcon = <LoadingOutlined style={{ fontSize: 34 }} spin />;
-  console.log("AAA", todos);
 
   return (
     <div className="todo_list_container">
