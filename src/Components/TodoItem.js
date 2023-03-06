@@ -36,6 +36,15 @@ const TodoItem = ({ todo }) => {
     });
   };
 
+  const showTheDateTodoIsCreated = (todo) => {
+    const timeTodoCreated = new Date(todo.createdAt);
+    return timeTodoCreated.toLocaleDateString("en-us", {
+      weekday: "short",
+      month: "short",
+      day: "numeric",
+    });
+  };
+
   //Using editTodo function I wrote in redux, I use todo's existing properties;
   //however, give new id and text data
   const handleEdit = () => {
@@ -145,12 +154,17 @@ const TodoItem = ({ todo }) => {
             </div>
 
             <div>
-              <EditOutlined
-                style={{ fontSize: "22px", color: "black" }}
-                onClick={handleIsEditing}
-              />
+              {!todo.completed && (
+                <EditOutlined
+                  style={{ fontSize: "22px", color: "black" }}
+                  onClick={handleIsEditing}
+                />
+              )}
             </div>
           </div>
+        </div>
+        <div className="todo_item_date">
+          <span>Created at: {showTheDateTodoIsCreated(todo)}</span>
         </div>
       </div>
     </div>
