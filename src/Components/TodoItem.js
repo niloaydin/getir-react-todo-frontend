@@ -1,12 +1,4 @@
-import {
-  Card,
-  Popconfirm,
-  Button,
-  Input,
-  Modal,
-  notification,
-  Spin,
-} from "antd";
+import { Popconfirm, Button, Input, Modal, notification, Spin } from "antd";
 import {
   DeleteOutlined,
   EditOutlined,
@@ -87,13 +79,15 @@ const TodoItem = ({ todo }) => {
           open={isEditing}
           footer={[]}
           onCancel={handleIsEditing}
-          className="deneme"
+          className="todo_item_modal"
         >
           <Input.Group compact className="edit_form">
             <Input
-              style={{ width: "60%" }}
               value={value}
               defaultValue={value}
+              style={{
+                width: "60%",
+              }}
               onChange={(event) => setValue(event.target.value)}
               onKeyPress={(e) => {
                 if (e.key === "Enter") {
@@ -119,15 +113,15 @@ const TodoItem = ({ todo }) => {
     </div>
   ) : (
     <div className="todo_item_container">
-      <Card className={!todo.completed ? "todo_card" : "todo_card completed"}>
+      <div className={!todo.completed ? "todo_card" : "todo_card completed"}>
         <div className="todo_item">
           <div className="todo_item_and_input">
             <input
               type="checkbox"
               checked={todo.completed}
               onChange={handleToggle}
-              style={{ width: "18px", height: "18px" }}
             />
+
             <span>{todo.text}</span>
           </div>
 
@@ -158,7 +152,7 @@ const TodoItem = ({ todo }) => {
             </div>
           </div>
         </div>
-      </Card>
+      </div>
     </div>
   );
 };
