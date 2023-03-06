@@ -6,7 +6,11 @@
 
 .todo_card {
   margin-bottom: 20px;
-  width: 90%;
+  width: 94%;
+  background-color: white;
+  border: 1px solid whitesmoke;
+  padding: 24px 12px 24px 5px;
+  border-radius: 8px;
 }
 .completed {
   background-color: #2ecc71;
@@ -18,35 +22,47 @@
 
 .todo_item {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-between;
+  gap: 10px;
+}
+.todo_item span {
+  font-size: 1.1em;
 }
 .todo_item_and_input {
   display: flex;
   align-items: center;
-  gap: 15px;
-}
-.todo_item span {
-  font-size: 1.2em;
+  text-align: left;
+  gap: 5px;
+  word-break: break-word;
 }
 
 .todo_icons {
   display: flex;
   gap: 10px;
 }
-
+.ant-card-body {
+  padding: 20px 10px 20px 5px;
+  border-radius: 0 0 8px 8px;
+}
 .edit_form {
   text-align: center;
   margin-top: 5%;
   margin-bottom: 8%;
 }
-.deneme {
+.todo_item_modal {
   text-align: center;
+}
+.edit_form input {
+  width: 100%;
 }
 
 @media (max-width: 576px) {
-  .deneme {
+  .todo_item_modal {
     max-width: 80%;
     margin: auto;
+  }
+  .todo_item span {
+    font-size: 1em;
   }
 }

@@ -1,5 +1,6 @@
 .todo_list_container {
   padding-top: 50px;
+  padding-bottom: 20px;
 }
 .active_todo_board {
   /* background: linear-gradient(
@@ -22,7 +23,7 @@
     min-height: 50vh;
   }
   .todo_list_container {
-    width: 85%;
+    /* width: 85%; */
     margin: auto;
   }
 }
